@@ -3,6 +3,8 @@ del History\*.* /s /q
 		
 del *.log /s /q
 del *.txt /s /q
+del *.PrjPcbStructure /s /q
+
 
 
 rd "Project Logs for MBLv1" /q /s
