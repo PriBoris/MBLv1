@@ -115,6 +115,27 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 
+[ProjectVariant1]
+Description=Variant LEFT
+AllowFabrication=0
+ParameterCount=0
+VariationCount=3
+Variation1=Designator=R3|UniqueId=\BIYJTWXU|Kind=1|AlternatePart= 
+Variation2=Designator=R4|UniqueId=\FLUXSYCV|Kind=1|AlternatePart= 
+Variation3=Designator=R8|UniqueId=\AQVWRSFF|Kind=1|AlternatePart= 
+ParamVariationCount=0
+
+[ProjectVariant2]
+Description=Variant RIGHT
+AllowFabrication=0
+ParameterCount=0
+VariationCount=4
+Variation1=Designator=R1|UniqueId=\PHMXYPUE|Kind=1|AlternatePart= 
+Variation2=Designator=R5|UniqueId=\UTGRQSMG|Kind=1|AlternatePart= 
+Variation3=Designator=R6|UniqueId=\XOJBTDPK|Kind=1|AlternatePart= 
+Variation4=Designator=R7|UniqueId=\ATPEMDFV|Kind=1|AlternatePart= 
+ParamVariationCount=0
+
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
