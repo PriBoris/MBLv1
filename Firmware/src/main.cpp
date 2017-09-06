@@ -10,6 +10,7 @@
 
 
 
+
 int main(){
 
 	Clock::init();
@@ -17,9 +18,18 @@ int main(){
 	UI::init();
 	UI::ledGreen();
 	
-	uint32_t i = 0;
 	while(true){ 
-		i++;
+
+		if (UI::btnPlusIsPushed()){
+			UI::ledRed();
+		}else if (UI::btnMinusIsPushed()){
+			UI::ledGreen();
+		}else if (UI::btnCtrlIsPushed()){
+			UI::ledYellow();
+		}else{
+			UI::ledOff();
+		}
+
 		__asm("  nop");
 		
 	};

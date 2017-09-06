@@ -1,8 +1,8 @@
-;******************** (C) COPYRIGHT 2014 STMicroelectronics ********************
+;******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
 ;* File Name          : startup_stm32l052xx.s
 ;* Author             : MCD Application Team
-;* Version            : V1.0.0RC1
-;* Date               : 15-April-2014
+;* Version            : V1.4.0
+;* Date               : 01-October-2015
 ;* Description        : STM32l052xx Devices vector table for MDK-ARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
