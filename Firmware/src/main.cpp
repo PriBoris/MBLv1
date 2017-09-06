@@ -15,6 +15,7 @@ int main(){
 	Clock::init();
 	Ports::init();
 	UI::init();
+	UI::ledGreen();
 	
 	uint32_t i = 0;
 	while(true){ 

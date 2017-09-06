@@ -18,36 +18,37 @@ private:
 public:
 	static void init();
 
-	
-	class OutputType{
-		static const uint8_t PushPull = 0;// Output push-pull 
-		static const uint8_t OpenDrain = 1;//Output open-drain
+	enum GpioOutputType{
+		GPIO_PushPull,// Output push-pull 
+		GPIO_OpenDrain  //Output open-drain
 	};
-	class Pull{
-		static const uint8_t NoPull = 0;
-		static const uint8_t PullUp = 1;
-		static const uint8_t PullDown = 2; 
+	enum GpioPull{
+		GPIO_NoPull,
+		GPIO_PullUp,
+		GPIO_PullDown 
 	};
-	class OutputSpeed{
-		static const uint8_t LowSpeed = 0;//fall/rise time 100ns
-		static const uint8_t MediumSpeed = 1;//10ns
-		static const uint8_t FastSpeed = 2;//6ns
-		static const uint8_t HighSpeed = 3;//4ns
+	enum GpioSpeed{
+		GPIO_LowSpeed,//fall/rise time 100ns
+		GPIO_MediumSpeed,//10ns
+		GPIO_FastSpeed,//6ns
+		GPIO_HighSpeed//4ns
 	};
-	class OutputState{
-		static const uint8_t Reset = 0;
-		static const uint8_t Set = 1;
+	enum GpioAF{
+		GPIO_AF1_USART1 = 1,
+	};
+	enum GpioValue{
+		Reset = 0,
+		Set = 1
 	};
 
 	static void initOutput(
 		GPIO_TypeDef *  GPIOx,  
 		uint32_t pin,
-		OutputType outputType,
-		OutputSpeed outputSpeed,
-		OutputState initOutputState
+		GpioOutputType gpioOutputType,
+		GpioSpeed gpioSpeed,
+		GpioValue initValue
 		);
 
-/*	
 	static void initAnalogInput(
 		GPIO_TypeDef *  GPIOx,  
 		uint32_t pin
@@ -67,11 +68,11 @@ public:
 		GpioSpeed gpioSpeed,
 		GpioPull pull
 		);	
-*/	
+	
 	static void outputSet(GPIO_TypeDef *GPIOx,uint32_t pin);
 	static void outputReset(GPIO_TypeDef *GPIOx,uint32_t pin);
 	static bool inputIsSet(GPIO_TypeDef *GPIOx,uint32_t pin);
-	static bool inputIsReset(GPIO_TypeDef *GPIOx,uint32_t pin);
+	static bool inputIsReset(GPIO_TypeDef *GPIOx,uint32_t pin);	
 
 };
 
