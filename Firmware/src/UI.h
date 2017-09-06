@@ -3,6 +3,19 @@
 #define UI_H
 
 
+/**
+	@defgroup BL Business Logic
+	@brief Hardware independent routines
+*/
+
+
+
+
+/**
+	@ingroup BL
+	@{
+	@brief Routines for buttons and indicators
+*/
 class UI{
 private:
 public:

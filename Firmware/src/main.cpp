@@ -7,6 +7,20 @@
 #include "Ports.h"
 
 
+/**	@mainpage
+
+	@section intro_sec Introduction
+
+	This is the firmware project for the Mirror Backlight V1
+
+	@section intro_tools Tools
+
+	- Keil 5.17
+	- ST-Link Debugger
+	- Doxygen 1.8.13
+	- Python 3.6
+
+*/
 
 
 

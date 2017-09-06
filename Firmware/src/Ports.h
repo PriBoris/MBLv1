@@ -5,8 +5,16 @@
 #include "stm32l0xx.h"
 
 
+/**
+	@ingroup STM32L0xx
+	@{
+	@brief Routines for initializing GPIO ports of STM32L0xx
+
+*/
+
 class Ports{
 private:
+
 	enum GpioMode{
 		GPIO_Mode_IN,//Input mode 
 		GPIO_Mode_OUT,// General purpose output mode
@@ -75,6 +83,11 @@ public:
 	static bool inputIsReset(GPIO_TypeDef *GPIOx,uint32_t pin);	
 
 };
+
+/**
+	@}
+*/
+
 
 
 #endif //PORTS_H
