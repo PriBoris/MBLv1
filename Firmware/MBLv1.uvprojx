@@ -451,6 +451,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\UI.h</FilePath>
             </File>
+            <File>
+              <FileName>LightPWM.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\LightPWM.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>LightPWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\LightPWM.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

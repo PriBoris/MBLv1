@@ -5,6 +5,7 @@
 #include "UI.h"
 #include "Clock.h"
 #include "Ports.h"
+#include "LightPWM.h"
 
 
 /**	@mainpage
@@ -30,6 +31,8 @@ int main(){
 	Clock::init();
 	Ports::init();
 	UI::init();
+	LightPWM::init(50000);
+	
 	UI::ledGreen();
 	
 	while(true){ 

@@ -42,7 +42,13 @@ public:
 		GPIO_HighSpeed//4ns
 	};
 	enum GpioAF{
-		GPIO_AF1_USART1 = 1,
+		GPIO_AF1 = 1,
+		GPIO_AF2 = 2,
+		GPIO_AF3 = 3,
+		GPIO_AF4 = 4,
+		GPIO_AF5 = 5,
+		GPIO_AF6 = 6,
+		GPIO_AF7 = 7
 	};
 	enum GpioValue{
 		Reset = 0,

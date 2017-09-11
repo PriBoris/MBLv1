@@ -32,7 +32,9 @@ public:
 	static bool btnCtrlIsPushed();
 
 };
-
+/**
+	@}
+*/
 
 #endif //UI_H
 

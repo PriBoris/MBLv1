@@ -7,7 +7,7 @@
 	@brief Hardware dependent routines
 */
 
-
+#include <stdint.h>
 
 /**
 	@ingroup STM32L0xx
@@ -16,8 +16,11 @@
 */
 class Clock{
 private:
+	static const uint32_t HSI_FREQUENCY_HZ = 16000000;
 public:
 	static void init();
+
+	static uint32_t getFrequencyHzAPB1();
 };
 
 
