@@ -43,6 +43,7 @@ void UI::init(){
 		Ports::GPIO_PullDown
 		);	
 
+	ledOff();
 
 
 }

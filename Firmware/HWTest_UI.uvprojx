@@ -451,6 +451,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\UI.h</FilePath>
             </File>
+            <File>
+              <FileName>Heartbeat.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Heartbeat.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Heartbeat.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Heartbeat.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

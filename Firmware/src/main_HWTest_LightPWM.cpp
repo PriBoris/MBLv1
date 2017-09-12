@@ -17,26 +17,35 @@
 int main(){
 
 	Clock::init();
-	Heartbeat::start(2);
+	
+	Heartbeat::start(10, Clock::getFrequencyHzSystem());
 	
 	Ports::init();
 	UI::init();
 	LightPWM::init();
 	
-	UI::ledOff();
+	LightPWM::start(10000, Clock::getFrequencyHzAPB1());
+	
+	LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_1, 10);	
+	LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_2, 20);	
+	LightPWM::setChannelDuty(LightPWM::CHANNEL_RIGHT_1, 30);	
+	LightPWM::setChannelDuty(LightPWM::CHANNEL_RIGHT_2, 40);	
+	
 	while(true){ 
 
-		if (UI::btnPlusIsPushed()){
-			UI::ledRed();
-		}else if (UI::btnMinusIsPushed()){
-			UI::ledGreen();
-		}else if (UI::btnCtrlIsPushed()){
-			UI::ledYellow();
-		}else{
-			UI::ledOff();
-		}
+		if (Heartbeat::ticked()){
+			
+			if (UI::btnPlusIsPushed()){
 
-		__asm("  nop");
+				UI::ledRed();
+			}else{
+				
+				UI::ledOff();
+			}
+			
+		}
+		
+
 		
 	};
 	
