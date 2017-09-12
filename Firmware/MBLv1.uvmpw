@@ -9,12 +9,16 @@
 
   <project>
     <PathAndName>.\MBLv1.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
-    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
     <PathAndName>.\HWTest_UI.uvprojx</PathAndName>
+  </project>
+
+  <project>
+    <PathAndName>.\HWTest_LightPWM.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
 </ProjectWorkspace>

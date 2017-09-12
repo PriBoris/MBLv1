@@ -51,8 +51,8 @@ public:
 		GPIO_AF7 = 7
 	};
 	enum GpioValue{
-		Reset = 0,
-		Set = 1
+		GPIO_Reset = 0,
+		GPIO_Set = 1
 	};
 
 	static void initOutput(

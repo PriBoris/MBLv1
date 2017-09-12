@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'HWTest_UI' 
+ * Project: 'HWTest_LightPWM' 
  * Target:  'Target 1' 
  */
 

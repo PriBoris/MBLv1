@@ -54,7 +54,7 @@ void Ports::initOutput(
 		break;
 	}
 
-	if (initValue==Reset){
+	if (initValue==GPIO_Reset){
 		outputReset(GPIOx,pin);		
 	}else{
 		outputSet(GPIOx,pin);		

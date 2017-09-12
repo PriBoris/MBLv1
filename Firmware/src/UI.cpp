@@ -18,14 +18,14 @@ void UI::init(){
 		LED_RED_GPIO_PIN,
 		Ports::GPIO_PushPull,
 		Ports::GPIO_LowSpeed,
-		Ports::Set
+		Ports::GPIO_Set
 		);
 
 	Ports::initOutput(
 		LED_GREEN_GPIO_PIN,
 		Ports::GPIO_PushPull,
 		Ports::GPIO_LowSpeed,
-		Ports::Set
+		Ports::GPIO_Set
 		);
 
 	Ports::initInput(
