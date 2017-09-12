@@ -43,3 +43,9 @@ uint32_t Clock::getFrequencyHzAPB1(){
 	return HSI_FREQUENCY_HZ/1;
 }
 
+uint32_t Clock::getFrequencyHzSystem(){
+	
+	return HSI_FREQUENCY_HZ/1;
+}
+
+

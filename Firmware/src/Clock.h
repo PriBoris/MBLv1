@@ -21,6 +21,10 @@ public:
 	static void init();
 
 	static uint32_t getFrequencyHzAPB1();
+
+	static uint32_t getFrequencyHzSystem();
+
+
 };
 
 
