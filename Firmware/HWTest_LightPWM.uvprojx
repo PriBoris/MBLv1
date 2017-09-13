@@ -471,6 +471,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Heartbeat.h</FilePath>
             </File>
+            <File>
+              <FileName>LightSwitch.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\LightSwitch.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>LightSwitch.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\LightSwitch.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

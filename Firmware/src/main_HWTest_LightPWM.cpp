@@ -8,6 +8,7 @@
 #include "UI.h"
 #include "Ports.h"
 #include "LightPWM.h"
+#include "LightSwitch.h"
 
 
 
@@ -23,12 +24,7 @@ int main(){
 	Ports::init();
 	UI::init();
 	LightPWM::init();
-	
-	LightPWM::start(10000, Clock::getFrequencyHzAPB1());
-	LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_1, 10);	
-	LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_2, 20);	
-	LightPWM::setChannelDuty(LightPWM::CHANNEL_RIGHT_1, 30);	
-	LightPWM::setChannelDuty(LightPWM::CHANNEL_RIGHT_2, 40);	
+	LightSwitch::init();
 	
 	while(true){ 
 
@@ -62,6 +58,12 @@ int main(){
 					pwmEnabled = false;
 				}
 
+			}
+			
+			if (UI::btnMinusIsPushed()){
+				LightSwitch::setOn();
+			}else{
+				LightSwitch::setOff();
 			}
 			
 		}

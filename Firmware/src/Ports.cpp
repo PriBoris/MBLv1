@@ -36,6 +36,10 @@ void Ports::initOutput(
 		break;
 	case GPIO_OpenDrain:
 		GPIOx->OTYPER |= ((uint32_t)(1<<pin));
+		GPIOx->PUPDR &= ~((uint32_t)(3<<(2*pin))); //GPIO_NoPull
+
+
+
 		break;
 	}
 
