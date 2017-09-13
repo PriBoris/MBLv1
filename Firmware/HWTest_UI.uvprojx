@@ -492,16 +492,16 @@
     <files>
       <file attr="config" category="source" condition="Compiler ARMCC" name="Device\Source\ARM\startup_stm32l052xx.s" version="1.4.0">
         <instance index="0">RTE\Device\STM32L052C8Tx\startup_stm32l052xx.s</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.4.0" condition="STM32L052 CMSIS"/>
-        <package name="STM32L0xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.5.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.6.0" condition="STM32L052 CMSIS"/>
+        <package name="STM32L0xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.6.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
       <file attr="config" category="source" name="Device\Source\system_stm32l0xx.c" version="1.4.0">
         <instance index="0">RTE\Device\STM32L052C8Tx\system_stm32l0xx.c</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.4.0" condition="STM32L052 CMSIS"/>
-        <package name="STM32L0xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.5.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.6.0" condition="STM32L052 CMSIS"/>
+        <package name="STM32L0xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.6.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>

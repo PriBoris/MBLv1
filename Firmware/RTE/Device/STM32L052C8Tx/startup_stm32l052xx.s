@@ -1,8 +1,8 @@
 ;******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
 ;* File Name          : startup_stm32l052xx.s
 ;* Author             : MCD Application Team
-;* Version            : V1.4.0
-;* Date               : 01-October-2015
+;* Version            : V1.6.0
+;* Date               : 15-April-2016
 ;* Description        : STM32l052xx Devices vector table for MDK-ARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
@@ -85,7 +85,7 @@ __Vectors       DCD     __initial_sp              ; Top of Stack
                 DCD     0                         ; Reserved
                 DCD     0                         ; Reserved
                 DCD     SVC_Handler               ; SVCall Handler
-                DCD     DebugMon_Handler          ; Debug Monitor Handler
+                DCD     0                         ; Reserved
                 DCD     0                         ; Reserved
                 DCD     PendSV_Handler            ; PendSV Handler
                 DCD     SysTick_Handler           ; SysTick Handler
@@ -154,11 +154,6 @@ HardFault_Handler\
                 ENDP
 SVC_Handler     PROC
                 EXPORT  SVC_Handler                    [WEAK]
-                B       .
-                ENDP
-DebugMon_Handler\
-                PROC
-                EXPORT  DebugMon_Handler               [WEAK]
                 B       .
                 ENDP
 PendSV_Handler  PROC

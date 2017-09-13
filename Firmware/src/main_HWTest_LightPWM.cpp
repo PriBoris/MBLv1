@@ -25,7 +25,6 @@ int main(){
 	LightPWM::init();
 	
 	LightPWM::start(10000, Clock::getFrequencyHzAPB1());
-	
 	LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_1, 10);	
 	LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_2, 20);	
 	LightPWM::setChannelDuty(LightPWM::CHANNEL_RIGHT_1, 30);	
@@ -34,13 +33,35 @@ int main(){
 	while(true){ 
 
 		if (Heartbeat::ticked()){
+
+			static bool pwmEnabled = false;
 			
 			if (UI::btnPlusIsPushed()){
 
-				UI::ledRed();
+				if (pwmEnabled == false){
+					UI::ledRed();
+
+					LightPWM::start(10000, Clock::getFrequencyHzAPB1());
+					LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_1, 10);	
+					LightPWM::setChannelDuty(LightPWM::CHANNEL_LEFT_2, 20);	
+					LightPWM::setChannelDuty(LightPWM::CHANNEL_RIGHT_1, 30);	
+					LightPWM::setChannelDuty(LightPWM::CHANNEL_RIGHT_2, 40);	
+
+					pwmEnabled = true;
+				}
+
+
 			}else{
 				
-				UI::ledOff();
+				if (pwmEnabled == true){
+
+					UI::ledOff();
+
+					LightPWM::stop();
+
+					pwmEnabled = false;
+				}
+
 			}
 			
 		}
