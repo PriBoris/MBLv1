@@ -5,4 +5,5 @@ Objects/*
 *.sublime-workspace
 *.Administrator
 *.0000
+*.0001
 doxygen_output/*

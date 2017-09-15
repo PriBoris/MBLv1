@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'HWTest_LightPWM' 
+ * Project: 'HWTest_LightTemperature' 
  * Target:  'Target 1' 
  */
 

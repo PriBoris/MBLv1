@@ -17,6 +17,10 @@
 
   <project>
     <PathAndName>.\HWTest_LightPWM.uvprojx</PathAndName>
+  </project>
+
+  <project>
+    <PathAndName>.\HWTest_LightTemperature.uvprojx</PathAndName>
     <NodeIsActive>1</NodeIsActive>
     <NodeIsExpanded>1</NodeIsExpanded>
   </project>
