@@ -25,6 +25,13 @@ int main(){
 
 	while(true){
 
+		if (Heartbeat::ticked()){
+		
+			LightTemperature::readSmth();
+			
+			
+			
+		}
 
 
 	}

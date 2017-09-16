@@ -27,13 +27,14 @@ private:
 
 
 	class LM75A{
-
-/*B1 B0 Selected register
-0 0 Temperature register (Temp)
-0 1 Conﬁguration register (Conf)
-1 0 Hysteresis register (Thyst)
-1 1 Overtemperature shutdown register (Tos)
-*/	};
+	public:
+		static const uint8_t Register_Temperature = 0;
+		static const uint8_t Register_Configuration = 1;
+		static const uint8_t Register_Hysteresis = 2;
+		static const uint8_t Register_OvertemperatureShutdown = 3;
+	
+		static const uint8_t AddressBase = 0x48;
+	};
 
 
 
@@ -56,6 +57,10 @@ public:
 	Disable I2C peripheral.
 	*/
 	static void stop(void);
+
+
+	static void readSmth();
+
 
 };
 /**
