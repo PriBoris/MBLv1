@@ -149,9 +149,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>155</LineNumber>
+          <LineNumber>159</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219114</Address>
+          <Address>134219188</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -160,7 +160,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;4&gt;.\src\LightTemperature.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\HWTest_LightTemperature\src/LightTemperature.cpp\155</Expression>
+          <Expression>\\HWTest_LightTemperature\src/LightTemperature.cpp\159</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -172,22 +172,22 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>dataBuffer</ItemText>
+          <ItemText>LightTemperatureLeft,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>LightTemperatureLeft,0x0A</ItemText>
+          <ItemText>LightTemperatureRight,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>LightTemperatureRight,0x0A</ItemText>
+          <ItemText>transferCount</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>transferCount</ItemText>
+          <ItemText>transferData</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

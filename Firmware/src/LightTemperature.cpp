@@ -12,7 +12,7 @@
 #define SCL_AF		Ports::GPIO_AF4
 
 
-uint8_t LightTemperature::dataBuffer[LightTemperature::DATA_BUFFER_LENGTH];
+uint8_t LightTemperature::transferData[LightTemperature::TRANSFER_DATA_BUFFER_LENGTH];
 uint32_t LightTemperature::actualTransferLength;
 bool LightTemperature::transferComplete;
 uint32_t LightTemperature::transferCount;
@@ -20,7 +20,7 @@ uint32_t LightTemperature::transferCount;
 
 void LightTemperature::init(){
 
-	memset(dataBuffer, 0, sizeof(dataBuffer));
+	memset(transferData, 0, sizeof(transferData));
 	transferCount = 0;
 	transferComplete = false;
 	actualTransferLength = 0;
@@ -148,7 +148,11 @@ void LightTemperature::isr(void){
 
 	}else if (I2C1->ISR & I2C_ISR_RXNE){
 
-		dataBuffer[actualTransferLength++] = I2C1->RXDR;
+		transferData[actualTransferLength++] = I2C1->RXDR;
+
+	}else if (I2C1->ISR & I2C_ISR_TXIS){
+
+		I2C1->TXDR = transferData[actualTransferLength++];
 
 	}else{
 
@@ -173,47 +177,116 @@ uint8_t LightTemperature::getSlaveAddress(uint8_t channel){
 }
 
 
-int8_t LightTemperature::readTemperature(uint8_t channel){
 
-	uint8_t sensorAddress = getSlaveAddress(channel);
 
-	uint8_t transferLength = 2;
 
+
+bool LightTemperature::writeBytes(uint8_t channel, uint32_t bytesCount){
+	
 	I2C1->CR2 = 
-		(sensorAddress << (I2C_CR2_SADD_Pos+1)) + 
-		(1 << I2C_CR2_RD_WRN_Pos) + // Master requests a read transfer.
-		(transferLength << I2C_CR2_NBYTES_Pos) + // Number of bytes
+		(getSlaveAddress(channel) << (I2C_CR2_SADD_Pos + 1)) + 
+		(0 << I2C_CR2_RD_WRN_Pos) + 
+		(bytesCount << I2C_CR2_NBYTES_Pos) + 
 		0;
 
 	actualTransferLength = 0;
-	transferComplete = false;
 
+	transferComplete = false;
 
 	I2C1->CR2 |= I2C_CR2_START;
 
-	while(transferComplete == false){
-		__asm(" nop");
-	}
+	while(transferComplete == false);
 	
-	if (actualTransferLength == transferLength){
+	return (actualTransferLength == bytesCount);
+}
 
-		
-		return *(int8_t*)&dataBuffer[0]; // integer part
+bool LightTemperature::readBytes(uint8_t channel, uint32_t bytesCount){
+
+	I2C1->CR2 = 
+		(getSlaveAddress(channel) << (I2C_CR2_SADD_Pos + 1)) + 
+		(1 << I2C_CR2_RD_WRN_Pos) + 
+		(bytesCount << I2C_CR2_NBYTES_Pos) + 
+		0;
+
+	actualTransferLength = 0;
+
+	transferComplete = false;
+
+	I2C1->CR2 |= I2C_CR2_START;
+
+	while(transferComplete == false);
+	
+	return (actualTransferLength == bytesCount);
+}
+
+bool LightTemperature::setRegisterPointer(uint8_t channel, uint8_t registerPointer){
+
+	transferData[0] = registerPointer;
+	return writeBytes(channel, 1);
+	
+}
+
+bool LightTemperature::getTemp(uint8_t channel){
+	
+	return (
+		(true == setRegisterPointer(channel, LM75A::Register_Temperature)) &&
+		(true == readBytes(channel, 2))
+		);
+}
+
+bool LightTemperature::getTos(uint8_t channel){
+
+	return (
+		(true == setRegisterPointer(channel, LM75A::Register_OvertemperatureShutdown)) &&
+		(true == readBytes(channel, 2))
+		);
+}
+
+bool LightTemperature::getThyst(uint8_t channel){
+
+	return (
+		(true == setRegisterPointer(channel, LM75A::Register_Hysteresis)) &&
+		(true == readBytes(channel, 2))
+		);
+
+}
+
+bool LightTemperature::getConf(uint8_t channel){
+	
+	return (
+		(true == setRegisterPointer(channel, LM75A::Register_Configuration)) &&
+		(true == readBytes(channel, 1))
+		);
+	
+}
+
+bool LightTemperature::setConf(uint8_t channel, uint8_t confValue){
+
+	transferData[0] = LM75A::Register_Configuration;
+	transferData[1] = confValue;
+	return writeBytes(channel, 2);
+	
+	
+	
+}
+
+
+int8_t LightTemperature::readTemperature(uint8_t channel){
+
+	if (true == getTemp(channel)){
+		return transferData[0];
 	}else{
-		
 		return ERROR_VALUE;
 	}
 	
+}
+
+void LightTemperature::shutDown(uint8_t channel){
+	setConf(channel, LM75A::Configuration_Shutdown);
+}
 	
-/*
-
-
-
-*/	
-
-
-
-	
+void LightTemperature::powerOn(uint8_t channel){
+	setConf(channel, LM75A::Configuration_Normal);
 }
 
 

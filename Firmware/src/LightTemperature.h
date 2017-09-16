@@ -40,10 +40,14 @@ private:
 		static const uint8_t Register_OvertemperatureShutdown = 3;
 
 		static const uint8_t AddressBase = 0x48;
+	
+		static const uint8_t Configuration_Shutdown = 1;
+		static const uint8_t Configuration_Normal = 0;
+			
 	};
 
-	static const uint32_t DATA_BUFFER_LENGTH = 32;
-	static uint8_t dataBuffer[DATA_BUFFER_LENGTH];
+	static const uint32_t TRANSFER_DATA_BUFFER_LENGTH = 32;
+	static uint8_t transferData[TRANSFER_DATA_BUFFER_LENGTH];
 	static uint32_t actualTransferLength;
 	static bool transferComplete;
 	static uint32_t transferCount;
@@ -51,7 +55,17 @@ private:
 	static uint8_t getSlaveAddress(uint8_t channel);
 
 	
+	static bool writeBytes(uint8_t channel, uint32_t bytesCount);
+	static bool readBytes(uint8_t channel, uint32_t bytesCount);
 
+	static bool setRegisterPointer(uint8_t channel, uint8_t registerPointer);
+	static bool getTemp(uint8_t channel);
+	static bool getTos(uint8_t channel);
+	static bool getThyst(uint8_t channel);
+
+	static bool getConf(uint8_t channel);
+	static bool setConf(uint8_t channel, uint8_t confValue);
+	
 
 public:
 
@@ -66,19 +80,29 @@ public:
 	*/
 	static void start(uint32_t apbClockHz);
 
-
 	/**
 	Disable I2C peripheral.
 	*/
 	static void stop(void);
 
 
-	static int8_t readTemperature(uint8_t channel);
-
+	/**
+	I2C peripheral interrupt service routine
+	*/
 	static void isr(void);
 
 
 	static const int8_t ERROR_VALUE = (int8_t)127;
+
+
+	static int8_t readTemperature(uint8_t channel);
+
+	static void shutDown(uint8_t channel);
+	
+	static void powerOn(uint8_t channel);
+	
+	
+	
 };
 /**
 	@}

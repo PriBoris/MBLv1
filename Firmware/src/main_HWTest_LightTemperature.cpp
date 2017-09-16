@@ -25,6 +25,7 @@ int main(){
 	
 	LightTemperature::start(Clock::getFrequencyHzAPB1());
 	
+	LightTemperature::shutDown(LightTemperature::CHANNEL_LEFT);
 
 	while(true){
 
@@ -32,6 +33,7 @@ int main(){
 		
 			
 			LightTemperatureLeft = LightTemperature::readTemperature(LightTemperature::CHANNEL_LEFT);
+			
 			LightTemperatureRight = LightTemperature::readTemperature(LightTemperature::CHANNEL_RIGHT);
 			
 			static uint8_t toggle = 0;
