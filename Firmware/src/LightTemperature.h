@@ -25,6 +25,19 @@ private:
 	static void setPortsGPI();
 
 
+
+	class LM75A{
+
+/*B1 B0 Selected register
+0 0 Temperature register (Temp)
+0 1 Conﬁguration register (Conf)
+1 0 Hysteresis register (Thyst)
+1 1 Overtemperature shutdown register (Tos)
+*/	};
+
+
+
+
 public:
 
 

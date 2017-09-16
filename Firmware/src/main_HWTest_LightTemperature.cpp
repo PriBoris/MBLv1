@@ -19,6 +19,9 @@ int main(){
 	Ports::init();
 	UI::init();
 	LightTemperature::init();
+	
+	LightTemperature::start(Clock::getFrequencyHzAPB1());
+	
 
 	while(true){
 
