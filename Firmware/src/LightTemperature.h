@@ -12,6 +12,12 @@
 */
 
 class LightTemperature{
+
+public:
+
+	static const uint8_t CHANNEL_LEFT = 0;
+	static const uint8_t CHANNEL_RIGHT = 1;
+	
 private:
 
 	/**
@@ -32,11 +38,19 @@ private:
 		static const uint8_t Register_Configuration = 1;
 		static const uint8_t Register_Hysteresis = 2;
 		static const uint8_t Register_OvertemperatureShutdown = 3;
-	
+
 		static const uint8_t AddressBase = 0x48;
 	};
 
+	static const uint32_t DATA_BUFFER_LENGTH = 32;
+	static uint8_t dataBuffer[DATA_BUFFER_LENGTH];
+	static uint32_t actualTransferLength;
+	static bool transferComplete;
+	static uint32_t transferCount;
 
+	static uint8_t getSlaveAddress(uint8_t channel);
+
+	
 
 
 public:
@@ -59,9 +73,12 @@ public:
 	static void stop(void);
 
 
-	static void readSmth();
+	static int8_t readTemperature(uint8_t channel);
+
+	static void isr(void);
 
 
+	static const int8_t ERROR_VALUE = (int8_t)127;
 };
 /**
 	@}

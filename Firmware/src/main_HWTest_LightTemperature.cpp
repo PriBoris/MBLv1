@@ -9,6 +9,9 @@
 #include "Ports.h"
 #include "LightTemperature.h"
 
+int8_t LightTemperatureLeft = LightTemperature::ERROR_VALUE;
+int8_t LightTemperatureRight = LightTemperature::ERROR_VALUE;
+
 
 int main(){
 
@@ -27,8 +30,17 @@ int main(){
 
 		if (Heartbeat::ticked()){
 		
-			LightTemperature::readSmth();
 			
+			LightTemperatureLeft = LightTemperature::readTemperature(LightTemperature::CHANNEL_LEFT);
+			LightTemperatureRight = LightTemperature::readTemperature(LightTemperature::CHANNEL_RIGHT);
+			
+			static uint8_t toggle = 0;
+			if (toggle == 0){
+				UI::ledGreen();
+			}else{
+				UI::ledOff();
+			}
+			toggle ^= 1;
 			
 			
 		}

@@ -3,6 +3,7 @@
 
 #include "Ports.h"
 
+#include <string.h>
 
 #define SDA_GPIO_PIN	GPIOB, 7
 #define SCL_GPIO_PIN	GPIOB, 8
@@ -11,10 +12,18 @@
 #define SCL_AF		Ports::GPIO_AF4
 
 
+uint8_t LightTemperature::dataBuffer[LightTemperature::DATA_BUFFER_LENGTH];
+uint32_t LightTemperature::actualTransferLength;
+bool LightTemperature::transferComplete;
+uint32_t LightTemperature::transferCount;
+
 
 void LightTemperature::init(){
 
-
+	memset(dataBuffer, 0, sizeof(dataBuffer));
+	transferCount = 0;
+	transferComplete = false;
+	actualTransferLength = 0;
 
 	setPortsGPI();
 	
@@ -112,61 +121,95 @@ void LightTemperature::setPortsGPI(){
 }
 
 extern "C"{void I2C1_IRQHandler(){
+	LightTemperature::isr();
+}}
+
+void LightTemperature::isr(void){
 
 	__asm("	nop");
 	
 	if (I2C1->ISR & I2C_ISR_NACKF){
+
 		I2C1->ICR = I2C_ICR_NACKCF;
+
 	}else if (I2C1->ISR & I2C_ISR_STOPF){
+
 		I2C1->ICR = I2C_ICR_STOPCF;
+		transferComplete = true;
+		transferCount++;
+
+	}else if (I2C1->ISR & I2C_ISR_ARLO){
+
+		I2C1->ICR = I2C_ICR_ARLOCF;
+		
+	}else if (I2C1->ISR & I2C_ISR_TC){
+
+		I2C1->CR2 |= I2C_CR2_STOP;
+
 	}else if (I2C1->ISR & I2C_ISR_RXNE){
-		I2C1->ICR = I2C_ICR_STOPCF;
+
+		dataBuffer[actualTransferLength++] = I2C1->RXDR;
+
 	}else{
+
 		__asm("	nop");
+
 	}
 
-/*	
-#define I2C_ISR_TXE                  I2C_ISR_TXE_Msk                      //Transmit data register empty 
-#define I2C_ISR_RXNE                 I2C_ISR_RXNE_Msk                     //Receive data register not empty 
-#define I2C_ISR_NACKF                I2C_ISR_NACKF_Msk                    //NACK received flag 
-#define I2C_ISR_STOPF                I2C_ISR_STOPF_Msk                    //STOP detection flag 
-#define I2C_ISR_TC                   I2C_ISR_TC_Msk                       //Transfer complete (master mode) 
-#define I2C_ISR_TCR                  I2C_ISR_TCR_Msk                      //Transfer complete reload 
-#define I2C_ISR_BERR                 I2C_ISR_BERR_Msk                     //Bus error 
-#define I2C_ISR_ARLO                 I2C_ISR_ARLO_Msk                     //Arbitration lost 
-#define I2C_ISR_OVR                  I2C_ISR_OVR_Msk                      //Overrun/Underrun 
-#define I2C_ISR_PECERR               I2C_ISR_PECERR_Msk                   //PEC error in reception 
-#define I2C_ISR_TIMEOUT              I2C_ISR_TIMEOUT_Msk                  //Timeout or Tlow detection flag 
-#define I2C_ISR_ALERT                I2C_ISR_ALERT_Msk                    //SMBus alert 
-#define I2C_ISR_BUSY                 I2C_ISR_BUSY_Msk                     //Bus busy 
-#define I2C_ISR_DIR                  I2C_ISR_DIR_Msk                      //Transfer direction (slave mode) 
-#define I2C_ISR_ADDCODE              I2C_ISR_ADDCODE_Msk                  //Address match code (slave mode) 
-*/	
-	
-}}
 
 
-void LightTemperature::readSmth(){
+}
 
-/*
-Addressing mode (7-bit or 10-bit): ADD10 
-• Slave address to be sent: SADD[9:0] 
-• Transfer direction: RD_WRN
-The number of bytes to be transferred: NBYTES[7:0]. If the number of bytes is equal to 
-or greater than 255 bytes, NBYTES[7:0] must initially be filled with 0xFF.
 
-The user must then set the START bit in I2C_CR2 register. Changing all the above bits is 
-not allowed when START bit is set.
-*/	
+
+uint8_t LightTemperature::getSlaveAddress(uint8_t channel){
+
+	if (channel == CHANNEL_LEFT){
+		return (LM75A::AddressBase + 0);
+	}else{
+		return (LM75A::AddressBase + 1);
+	}
+
+}
+
+
+int8_t LightTemperature::readTemperature(uint8_t channel){
+
+	uint8_t sensorAddress = getSlaveAddress(channel);
+
+	uint8_t transferLength = 2;
 
 	I2C1->CR2 = 
-		((LM75A::AddressBase + 1) << (I2C_CR2_SADD_Pos+1)) + 
+		(sensorAddress << (I2C_CR2_SADD_Pos+1)) + 
 		(1 << I2C_CR2_RD_WRN_Pos) + // Master requests a read transfer.
-		(2 << I2C_CR2_NBYTES_Pos) + // Number of bytes
+		(transferLength << I2C_CR2_NBYTES_Pos) + // Number of bytes
 		0;
 
+	actualTransferLength = 0;
+	transferComplete = false;
+
+
 	I2C1->CR2 |= I2C_CR2_START;
+
+	while(transferComplete == false){
+		__asm(" nop");
+	}
 	
+	if (actualTransferLength == transferLength){
+
+		
+		return *(int8_t*)&dataBuffer[0]; // integer part
+	}else{
+		
+		return ERROR_VALUE;
+	}
+	
+	
+/*
+
+
+
+*/	
 
 
 
