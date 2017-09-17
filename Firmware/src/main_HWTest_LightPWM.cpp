@@ -18,6 +18,7 @@
 int main(){
 
 	Clock::init();
+	Heartbeat::init();
 	
 	Heartbeat::start(10, Clock::getFrequencyHzSystem());
 	

@@ -1,6 +1,9 @@
 
 #include "LightSwitch.h"
 
+#include "Ports.h"
+
+
 #define LIGHT_SWITCH_GPIO_PIN	GPIOB, 2
 
 void LightSwitch::init(void){

@@ -3,8 +3,6 @@
 #ifndef LIGHT_SWITCH_H
 #define LIGHT_SWITCH_H
 
-#include "Ports.h"
-
 /**
 	@ingroup BL
 	@{

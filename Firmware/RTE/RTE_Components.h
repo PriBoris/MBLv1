@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'HWTest_LightTemperature' 
+ * Project: 'HWTest_USB' 
  * Target:  'Target 1' 
  */
 
