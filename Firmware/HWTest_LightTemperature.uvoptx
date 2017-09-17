@@ -149,7 +149,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>159</LineNumber>
+          <LineNumber>162</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134219188</Address>
           <ByteObject>0</ByteObject>
@@ -160,7 +160,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;4&gt;.\src\LightTemperature.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\HWTest_LightTemperature\src/LightTemperature.cpp\159</Expression>
+          <Expression>\\HWTest_LightTemperature\src/LightTemperature.cpp\162</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -188,6 +188,21 @@
           <count>4</count>
           <WinNumber>1</WinNumber>
           <ItemText>transferData</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>active</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>counter</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>transferComplete</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -349,7 +364,7 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>10</FileNumber>
       <FileType>8</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\LightTemperature.cpp</PathWithFileName>

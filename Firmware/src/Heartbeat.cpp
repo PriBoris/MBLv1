@@ -6,6 +6,13 @@
 
 bool Heartbeat::tickFlag;
 
+uint32_t Heartbeat::counter;
+
+void Heartbeat::init(){
+	counter = 0;
+}
+
+
 void Heartbeat::start(uint32_t frequencyHz, uint32_t processorClockHz){
 
 /*
@@ -46,6 +53,7 @@ bool Heartbeat::ticked(void){
 void Heartbeat::isr(void){
 		
 	tickFlag = true;
+	counter ++;
 }
 
 extern "C"{ void SysTick_Handler(){

@@ -16,6 +16,7 @@ int8_t LightTemperatureRight = LightTemperature::ERROR_VALUE;
 int main(){
 
 	Clock::init();
+	Heartbeat::init();
 	
 	Heartbeat::start(10, Clock::getFrequencyHzSystem());
 	
@@ -23,26 +24,47 @@ int main(){
 	UI::init();
 	LightTemperature::init();
 	
-	LightTemperature::start(Clock::getFrequencyHzAPB1());
-	
-	LightTemperature::shutDown(LightTemperature::CHANNEL_LEFT);
-
 	while(true){
 
 		if (Heartbeat::ticked()){
-		
+
+			static bool active = false;
 			
-			LightTemperatureLeft = LightTemperature::readTemperature(LightTemperature::CHANNEL_LEFT);
+			if (UI::btnCtrlIsPushed() == true){
 			
-			LightTemperatureRight = LightTemperature::readTemperature(LightTemperature::CHANNEL_RIGHT);
+				if (active == false){
+
+					LightTemperature::start(Clock::getFrequencyHzAPB1());
+
+					active = true;
+				}
+				
+				LightTemperatureLeft = LightTemperature::readTemperature(LightTemperature::CHANNEL_LEFT);
+				LightTemperatureRight = LightTemperature::readTemperature(LightTemperature::CHANNEL_RIGHT);
 			
-			static uint8_t toggle = 0;
-			if (toggle == 0){
-				UI::ledGreen();
+				static uint8_t toggle = 0;
+				if (toggle == 0){
+					UI::ledGreen();
+				}else{
+					UI::ledOff();
+				}
+				toggle ^= 1;
+
+				
+				
 			}else{
+				
+				if (active == true){
+				
+					LightTemperature::stop();
+					active = false;
+				}
+				
 				UI::ledOff();
+				
 			}
-			toggle ^= 1;
+			
+			
 			
 			
 		}

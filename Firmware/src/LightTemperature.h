@@ -65,7 +65,10 @@ private:
 
 	static bool getConf(uint8_t channel);
 	static bool setConf(uint8_t channel, uint8_t confValue);
-	
+
+	static void shutDown(uint8_t channel);
+	static void powerOn(uint8_t channel);
+
 
 public:
 
@@ -97,9 +100,6 @@ public:
 
 	static int8_t readTemperature(uint8_t channel);
 
-	static void shutDown(uint8_t channel);
-	
-	static void powerOn(uint8_t channel);
 	
 	
 	

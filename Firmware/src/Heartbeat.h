@@ -23,7 +23,15 @@ private:
 
 	static bool tickFlag;
 
+	static uint32_t counter;
+
 public:
+
+	/**
+	Initializes Heartbeat class
+	*/
+	static void init();
+
 
 	/**
 	Starts heartbeat timer and its interrupts

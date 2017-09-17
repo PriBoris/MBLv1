@@ -68,12 +68,15 @@ void LightTemperature::start(uint32_t apbClockHz){
 
 	setPortsI2C();
 
-
+	powerOn(CHANNEL_LEFT);
+	powerOn(CHANNEL_RIGHT);
 }
 
 void LightTemperature::stop(void){
 
-
+	shutDown(CHANNEL_LEFT);
+	shutDown(CHANNEL_RIGHT);
+	
 	NVIC_DisableIRQ(I2C1_IRQn);
 	setPortsGPI();
 
