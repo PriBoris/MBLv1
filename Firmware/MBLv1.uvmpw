@@ -17,7 +17,6 @@
 
   <project>
     <PathAndName>.\HWTest_LightPWM.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
   </project>
 
   <project>
@@ -26,6 +25,8 @@
 
   <project>
     <PathAndName>.\HWTest_USB.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
 </ProjectWorkspace>
