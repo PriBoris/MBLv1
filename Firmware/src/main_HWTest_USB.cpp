@@ -13,9 +13,16 @@
 #include "UsbVoltageMonitor.h"
 
 
+class AdcResults{
+public:
+	uint32_t vcc;
+	uint32_t vbat;
+		
+	
+	
+};
 
-
-
+AdcResults adcResults;
 
 int main(){
 
@@ -28,8 +35,6 @@ int main(){
 	Analog::init();
 	UI::init();
 	
-//	UsbVoltageMonitor::init();
-	
 	Analog::start();
 	
 	//Analog::stop();
@@ -38,7 +43,19 @@ int main(){
 
 		if (Heartbeat::ticked()){
 
+			if (Analog::getComparatorOutput() == true){
+				
+				UI::ledRed();
+			}else{
+					
+				UI::ledGreen();
+			}
 			
+			if (Analog::adcSequenceIsComplete()){
+				
+				adcResults.vcc = Analog::getVccMillivolts();
+				adcResults.vbat = Analog::getVbatMillivolts();
+			}
 		}
 		
 	};
