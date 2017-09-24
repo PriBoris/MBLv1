@@ -34,6 +34,8 @@ void Clock::init(){
 	RCC->CFGR &= ~(RCC_CFGR_HPRE | RCC_CFGR_PPRE1 | RCC_CFGR_PPRE2);
 	RCC->CFGR |= (RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE1_DIV1 | RCC_CFGR_PPRE2_DIV1);
 
+	// System configuration controller clock enabled
+	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN; 
 
 
 }

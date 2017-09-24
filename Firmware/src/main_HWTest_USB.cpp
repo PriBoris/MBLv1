@@ -5,6 +5,8 @@
 
 #include "Clock.h"
 #include "Heartbeat.h"
+#include "Analog.h"
+
 
 #include "UI.h"
 #include "Ports.h"
@@ -23,9 +25,14 @@ int main(){
 	Heartbeat::start(10, Clock::getFrequencyHzSystem());
 	
 	Ports::init();
+	Analog::init();
 	UI::init();
 	
-	UsbVoltageMonitor::init();
+//	UsbVoltageMonitor::init();
+	
+	Analog::start();
+	
+	//Analog::stop();
 	
 	while(true){ 
 
