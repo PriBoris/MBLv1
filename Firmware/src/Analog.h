@@ -14,6 +14,8 @@ private:
 	static uint16_t vrefintCalValue;
 	static uint16_t tsenseCal1Value;
 	static uint16_t tsenseCal2Value;	
+	static int16_t tsense1Value;
+	static int16_t tsense2Value;	
 
 	static void adcEnable();
 	static void adcStart();
@@ -78,6 +80,7 @@ public:
 
 	static uint32_t getVccMillivolts();
 	static uint32_t getVbatMillivolts();
+	static int32_t getTemperatureDegrees();
 
 };
 

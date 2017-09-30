@@ -8,6 +8,8 @@
 uint16_t Analog::vrefintCalValue;
 uint16_t Analog::tsenseCal1Value;
 uint16_t Analog::tsenseCal2Value;	
+int16_t Analog::tsense1Value;
+int16_t Analog::tsense2Value;	
 
 uint32_t Analog::ovrCounter;
 
@@ -24,6 +26,8 @@ void Analog::init(){
 	vrefintCalValue = *(uint16_t*)VREFINT_CAL;
 	tsenseCal1Value = *(uint16_t*)TSENSE_CAL1;
 	tsenseCal2Value = *(uint16_t*)TSENSE_CAL2;
+	tsense1Value = 30;
+	tsense2Value = 130;
 
 }
 
@@ -201,6 +205,13 @@ uint32_t Analog::getVbatMillivolts(){
 	
 	return result;
 }
+
+int32_t Analog::getTemperatureDegrees(){
+	
+	float temperature = (float)(tsense2Value - tsense1Value) / (float)(tsenseCal2Value - tsenseCal1Value) * (float)(adcData[ADC_CHANNEL_TSensor] - tsenseCal1Value) + (float)tsense1Value;
+	return (int32_t)temperature;
+}
+
 
 
 

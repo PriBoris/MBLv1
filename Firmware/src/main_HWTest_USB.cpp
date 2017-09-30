@@ -17,6 +17,7 @@ class AdcResults{
 public:
 	uint32_t vcc;
 	uint32_t vbat;
+	int32_t temperature;
 		
 	
 	
@@ -55,6 +56,7 @@ int main(){
 				
 				adcResults.vcc = Analog::getVccMillivolts();
 				adcResults.vbat = Analog::getVbatMillivolts();
+				adcResults.temperature = Analog::getTemperatureDegrees();
 			}
 		}
 		
